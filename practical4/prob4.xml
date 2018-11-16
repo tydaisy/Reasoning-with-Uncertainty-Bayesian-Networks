@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>weather</NAME>
+	<OUTCOME>sunny</OUTCOME>
+	<OUTCOME>overcast</OUTCOME>
+	<OUTCOME>raining</OUTCOME>
+	<PROPERTY>position = (7518.90673828125, 5148.498046875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>detect visibility correctly?DVC?</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7745.37109375, 5145.275390625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>visibility</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (7652.56982421875, 5351.50146484375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>outdated information (OI)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (8032.6826171875, 5152.00048828125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>has roadwork (HR)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7926.63916015625, 5334.52197265625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>peak time (PT)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (8353.6826171875, 5190.66748046875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>working day (WD)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7189.9619140625, 5349.052734375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>detect flow correctly (DFC)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (8049.896484375, 5510.890625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>traffic flow (TF)</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (8220.09375, 5517.736328125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>correct prediction (CP)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (8013.80859375, 5702.99951171875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>use car (UC)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7264.4921875, 5515.89453125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>alert is triggered (AT)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7654.6826171875, 5704.6875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>traffic congestion (TC)</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (7832.20068359375, 5516.75634765625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>road is frozen(RF)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7388.0, 5350.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>alert is broken (AB)</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7576.0, 5566.0)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>weather</FOR>
+	<TABLE>0.5 0.25 0.25</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>detect visibility correctly?DVC?</FOR>
+	<TABLE>0.99 0.01</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>visibility</FOR>
+	<GIVEN>weather</GIVEN>
+	<GIVEN>detect visibility correctly?DVC?</GIVEN>
+	<TABLE>1.0 0.0 0.0 1.0 0.65 0.35 0.35 0.65 0.7 0.3 0.3 0.7</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>outdated information (OI)</FOR>
+	<TABLE>0.97 0.03</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>has roadwork (HR)</FOR>
+	<GIVEN>outdated information (OI)</GIVEN>
+	<TABLE>0.13 0.87 0.1 0.9</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>peak time (PT)</FOR>
+	<TABLE>0.33333 0.66667</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>working day (WD)</FOR>
+	<TABLE>0.75 0.25</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>detect flow correctly (DFC)</FOR>
+	<TABLE>0.9 0.1</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>traffic flow (TF)</FOR>
+	<TABLE>0.4 0.6</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>correct prediction (CP)</FOR>
+	<GIVEN>detect flow correctly (DFC)</GIVEN>
+	<GIVEN>traffic flow (TF)</GIVEN>
+	<GIVEN>traffic congestion (TC)</GIVEN>
+	<TABLE>1.0 0.0 0.25 0.75 0.25 0.75 1.0 0.0 0.25 0.75 1.0 0.0 1.0 0.0 0.25 0.75</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>use car (UC)</FOR>
+	<GIVEN>working day (WD)</GIVEN>
+	<GIVEN>road is frozen(RF)</GIVEN>
+	<TABLE>0.6 0.4 0.7 0.3 0.5 0.5 0.6 0.4</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>alert is triggered (AT)</FOR>
+	<GIVEN>traffic congestion (TC)</GIVEN>
+	<GIVEN>alert is broken (AB)</GIVEN>
+	<TABLE>0.0 1.0 0.8 0.2 0.0 1.0 0.05 0.95</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>traffic congestion (TC)</FOR>
+	<GIVEN>visibility</GIVEN>
+	<GIVEN>has roadwork (HR)</GIVEN>
+	<GIVEN>peak time (PT)</GIVEN>
+	<GIVEN>use car (UC)</GIVEN>
+	<GIVEN>road is frozen(RF)</GIVEN>
+	<TABLE>0.85 0.15 0.85 0.15 0.8 0.2 0.8 0.2 0.5 0.5 0.5 0.5 0.3 0.7 0.3 0.7 0.65 0.35 0.65 0.35 0.5 0.5 0.5 0.5 0.25 0.75 0.25 0.75 0.1 0.9 0.1 0.9 0.95 0.05 0.95 0.05 0.9 0.1 0.9 0.1 0.75 0.25 0.75 0.25 0.7 0.3 0.7 0.3 0.75 0.25 0.75 0.25 0.7 0.3 0.7 0.3 0.6 0.4 0.6 0.4 0.45 0.55 0.45 0.55</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>road is frozen(RF)</FOR>
+	<GIVEN>weather</GIVEN>
+	<TABLE>0.1 0.9 0.15 0.85 0.2 0.8</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>alert is broken (AB)</FOR>
+	<TABLE>0.02 0.98</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>

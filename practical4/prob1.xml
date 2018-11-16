@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>Battery Age (BA)</NAME>
+	<OUTCOME>new</OUTCOME>
+	<OUTCOME>old</OUTCOME>
+	<OUTCOME>very_old</OUTCOME>
+	<PROPERTY>position = (7173.3671875, 5077.2041015625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Charging System OK (CS)</NAME>
+	<OUTCOME>true</OUTCOME>
+	<OUTCOME>false</OUTCOME>
+	<PROPERTY>position = (7781.947265625, 5048.06396484375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Battery Voltage(BV)</NAME>
+	<OUTCOME>strong</OUTCOME>
+	<OUTCOME>weak</OUTCOME>
+	<OUTCOME>dead</OUTCOME>
+	<PROPERTY>position = (7456.0, 5203.0)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Voltage at Plug (VP)</NAME>
+	<OUTCOME>high</OUTCOME>
+	<OUTCOME>low</OUTCOME>
+	<PROPERTY>position = (7179.96630859375, 5400.53076171875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Starter System OK (SO)</NAME>
+	<OUTCOME>true</OUTCOME>
+	<OUTCOME>false</OUTCOME>
+	<PROPERTY>position = (7796.0341796875, 5405.93603515625)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>Battery Age (BA)</FOR>
+	<TABLE>0.4 0.4 0.2</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Charging System OK (CS)</FOR>
+	<TABLE>0.99 0.01</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Battery Voltage(BV)</FOR>
+	<GIVEN>Battery Age (BA)</GIVEN>
+	<GIVEN>Charging System OK (CS)</GIVEN>
+	<TABLE>0.99 0.005 0.005 0.8 0.15 0.05 0.8 0.01 0.19 0.05 0.3 0.65 0.6 0.3 0.1 0.002 0.1 0.898</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Voltage at Plug (VP)</FOR>
+	<GIVEN>Battery Voltage(BV)</GIVEN>
+	<TABLE>0.9 0.1 0.2 0.8 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Starter System OK (SO)</FOR>
+	<GIVEN>Battery Voltage(BV)</GIVEN>
+	<TABLE>0.99 0.01 0.7 0.3 0.0 1.0</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>
